@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import Background from "./Background";
 import { Dimensions } from "react-native";
 import Btn from "./Btn";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,16 +18,16 @@ const Home = (props) => {
           <Text style={[styles.text, styles.color]}>CMBEBIH'23</Text>
         </View>
         <View style={styles.bottomButtons}>
-        <Btn
+          <Btn
             bgColor="#8EA3B8"
-            textColor='white'
+            textColor="white"
             btnLable="Sign Up"
-            Press={() => props.navigation.navigate("Signup")}
+            onPress={() => props.navigation.navigate("Signup")}
           />
           <Btn
             textColor="#8EA3B8"
             btnLable="Sign In"
-            Press={() => props.navigation.navigate("Login")}
+            onPress={() => props.navigation.navigate("Login")}
           />
         </View>
       </View>
@@ -46,9 +47,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bottomButtons: {
-    flexDirection: 'column',
+    flexDirection: "column",
     justifyContent: "center",
-    marginTop: 100, 
+    marginTop: 100,
   },
   text: {
     fontSize: 42,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   },
   color: {
     color: "#8EA3B8",
-  }
+  },
 });
 
 export default Home;

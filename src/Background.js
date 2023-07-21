@@ -9,8 +9,7 @@ const Background = ({ children }) => {
         source={require("./assets/Background.png")}
         style={{ height: "100%" }}
       />
-      <View style={{ position: "absolute"}}>
-        {children}</View>
+      <View style={{ position: "absolute" }}>{children}</View>
     </View>
   );
 };

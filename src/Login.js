@@ -4,48 +4,108 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  ScrollView,
+  Keyboard,
 } from "react-native";
 import React from "react";
 import Background from "./Background";
 import Field from "./Field";
 import Btn from "./Btn";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Login = (props) => {
+  const [fields, setFields] = React.useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = React.useState({});
+  const validate = () => {
+    Keyboard.dismiss();
+    let valid = true;
+    setErrors({});
+    if (!fields.email) {
+      handleError("Please enter a email", "email");
+      valid = false;
+    }
+    if (!fields.password) {
+      handleError("Please enter a password", "password");
+      valid = false;
+    }
+
+    if (valid) {
+      alert(
+        "Welcome back! \n We have sent you an email confirmation. \n Please confirm your email."
+      );
+      props.navigation.navigate("Initial");
+    }
+    /*setTimeout(async () => {
+      let userData = await AsyncStorage.getItem("user");
+      if (userData) {
+        userData = JSON.parse(userData);
+        if (
+          fields.email == userData.email &&
+          fields.password == userData.password
+        ) {
+        }
+      }
+    }, 3000); */
+  };
+  const handleOnChange = (text, field) => {
+    setFields((prevState) => ({ ...prevState, [field]: text }));
+  };
+  const handleError = (errorMessage, field) => {
+    setErrors((prevState) => ({ ...prevState, [field]: errorMessage }));
+  };
   return (
     <Background>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Sign In</Text>
-        <Text style={styles.subHeading}>Welcome back!</Text>
-        <View style={styles.formContainer}>
-          <Field
-            placeholder="Email"
-            keyboardType={"email-address"}
-          />
-          <Field placeholder="Password" secureTextEntry={true} />
-          <View>
-            <Text style={styles.forgetPassword}>Forget Password?</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.heading}>Sign In</Text>
+          <Text style={styles.subHeading}>Welcome back!</Text>
+          <View style={styles.formContainer}>
+            <Field
+              placeholder="Email"
+              error={errors.email}
+              onFocus={() => {
+                handleError(null, "email");
+              }}
+              onChangeText={(text) => handleOnChange(text, "email")}
+            />
+            <Field
+              placeholder="Password"
+              password
+              error={errors.password}
+              onFocus={() => {
+                handleError(null, "passwords");
+              }}
+              onChangeText={(text) => handleOnChange(text, "password")}
+            />
+            <View>
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("ForgetPassword")}
+              >
+                <Text style={styles.forgetPassword}>Forget Password?</Text>
+              </TouchableOpacity>
+            </View>
+            <Btn
+              onPress={validate}
+              bgColor="#8EA3B8"
+              textColor="white"
+              btnLable="Sign In"
+            />
           </View>
-          <Btn
-            bgColor="#8EA3B8"
-            textColor="white"
-            btnLable="Sign In"
-            Press={() => {
-              alert(
-                "Thanks for signing up! \n We have sent you an email confirmation. \n Please confirm your email."
-              );
-              props.navigation.navigate("Signup");
-            }}
-          />
+          <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Don't have an account?</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Signup")}
+            >
+              <Text style={styles.loginLink}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.loginContainer}>
-          <Text style={styles.loginText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => props.navigation.navigate("Signup")}>
-            <Text style={styles.loginLink}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ScrollView>
     </Background>
   );
 };
@@ -77,7 +137,7 @@ const styles = StyleSheet.create({
   },
   forgetPassword: {
     color: "#49C9B3",
-    fontSize: 14,
+    fontSize: 12,
     marginLeft: windowWidth * 0.45,
   },
   loginContainer: {
