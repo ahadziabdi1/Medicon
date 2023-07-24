@@ -38,7 +38,7 @@ const Login = (props) => {
       alert(
         "Welcome back! \n We have sent you an email confirmation. \n Please confirm your email."
       );
-      props.navigation.navigate("Initial");
+      props.navigation.navigate("NavigationTab");
     }
     /*setTimeout(async () => {
       let userData = await AsyncStorage.getItem("user");
@@ -99,7 +99,7 @@ const Login = (props) => {
           <View style={styles.loginContainer}>
             <Text style={styles.loginText}>Don't have an account?</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Signup")}
+              onPress={() => props.navigation.navigate("Signup")}
             >
               <Text style={styles.loginLink}>Sign Up</Text>
             </TouchableOpacity>

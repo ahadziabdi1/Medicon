@@ -7,7 +7,6 @@ export default function Btn({
   bgColor,
   btnLable,
   textColor,
-  Press,
   onPress = () => {},
 }) {
   return (

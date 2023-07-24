@@ -1,14 +1,26 @@
-import { Text, StyleSheet, View } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icons from 'react-native-ionicons'; // Importing Ionicons
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Importing MaterialCommunityIcons
+import FontAwesome from 'react-native-fontawesome'; // Importing FontAwesome
+import Constants from '../Constants';
+import Home from '../Home';
+import Background from '../Background';
 
-export default class Initial extends Component {
-  render() {
-    return (
-      <View>
-        <Text>Initial</Text>
-      </View>
-    )
-  }
+
+const Initial = () => {
+  return (
+    <Background>
+      <ScrollView>
+        <View>
+          <Text>
+            Initial
+          </Text>
+        </View>
+      </ScrollView>
+    </Background>
+  );
 }
 
-const styles = StyleSheet.create({})
+export default Initial;
