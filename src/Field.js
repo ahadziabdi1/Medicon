@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   input: {
-    color: "#6885A1",
+    color: colors.airForceBlue,
     paddingHorizontal: windowWidth * 0.05,
     width: windowWidth * 0.8,
     justifyContent: "center",

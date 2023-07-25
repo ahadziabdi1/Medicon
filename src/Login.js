@@ -12,6 +12,7 @@ import Background from "./Background";
 import Field from "./Field";
 import Btn from "./Btn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import colors from "./Constants";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: windowWidth * 0.05,
   },
   heading: {
-    color: "white",
+    color: colors.frenchGray,
     fontSize: 42,
     marginTop: windowWidth * 0.5,
   },
@@ -136,8 +137,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   forgetPassword: {
-    color: "#49C9B3",
+    color: colors.pineGreen,
     fontSize: 12,
+    padding: 5,
     marginLeft: windowWidth * 0.45,
   },
   loginContainer: {

@@ -1,24 +1,16 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Keyboard,
-} from "react-native";
+import { View, Text, StyleSheet, Dimensions, Keyboard } from "react-native";
 import React from "react";
-import Background from "./Background";
-import Field from "./Field";
-import Btn from "./Btn";
+import Background from "../Background";
+import Field from "../Field";
+import Btn from "../Btn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native";
-import colors from "./Constants";
+import colors from "../Constants";
 
 const windowWidth = Dimensions.get("window").width;
 
-const Signup = (props) => {
+const NewPassword = (props) => {
   const [fields, setFields] = React.useState({
-    email: "",
     password: "",
     confirmpassword: "",
   });
@@ -27,14 +19,6 @@ const Signup = (props) => {
     Keyboard.dismiss();
     let valid = true;
     setErrors({});
-    if (!fields.email) {
-      handleError("Please enter a email", "email");
-      valid = false;
-    } else if (!fields.email.match(/^\S+@\S+\.\S+$/)) {
-      handleError("Please enter a valid email", "email");
-      valid = false;
-    }
-
     if (!fields.password) {
       handleError("Please enter a password", "password");
       valid = false;
@@ -46,12 +30,9 @@ const Signup = (props) => {
       handleError("Passwords do not match", "confirmpassword");
       valid = false;
     }
-
     if (valid) {
-      alert(
-        "Thanks for signing up! \n We have sent you an email confirmation. \n Please confirm your email."
-      );
-      props.navigation.navigate("Initial");
+      alert("You have created a new password. \n Please sign in to continue.");
+      props.navigation.navigate("Login");
     }
   };
   const handleOnChange = (text, field) => {
@@ -64,19 +45,10 @@ const Signup = (props) => {
     <Background>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.heading}>Sign Up</Text>
-          <Text style={styles.subHeading}>Sign Up to continue</Text>
+          <Text style={styles.heading}>New Password</Text>
           <View style={styles.formContainer}>
             <Field
-              placeholder="Email"
-              error={errors.email}
-              onFocus={() => {
-                handleError(null, "email");
-              }}
-              onChangeText={(text) => handleOnChange(text, "email")}
-            />
-            <Field
-              placeholder="Password"
+              placeholder="Enter New Password"
               password
               error={errors.password}
               onFocus={() => {
@@ -97,16 +69,8 @@ const Signup = (props) => {
               onPress={validate}
               bgColor="#8EA3B8"
               textColor="white"
-              btnLable="Sign Up"
+              btnLable="Send"
             />
-          </View>
-          <View style={styles.loginContainer}>
-            <Text style={styles.loginText}>Already have an account?</Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate("Login")}
-            >
-              <Text style={styles.loginLink}>Sign In</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -125,11 +89,7 @@ const styles = StyleSheet.create({
     color: colors.frenchGray,
     fontSize: 42,
     marginTop: windowWidth * 0.5,
-  },
-  subHeading: {
-    color: "#8EA3B8",
-    fontSize: 18,
-    marginBottom: 20,
+    padding: 15,
   },
   formContainer: {
     backgroundColor: "#CDD7E0",
@@ -139,21 +99,6 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
-  loginContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 20,
-  },
-  loginText: {
-    fontSize: 14,
-    color: "#8EA3B8",
-  },
-  loginLink: {
-    color: "#49C9B3",
-    fontWeight: "bold",
-    fontSize: 14,
-    marginLeft: 5,
-  },
 });
 
-export default Signup;
+export default NewPassword;
