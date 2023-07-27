@@ -13,6 +13,7 @@ import Btn from "./Btn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native";
 import colors from "./Constants";
+import Icon, { Icons } from "../src/bottomtab/Icon";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -99,6 +100,52 @@ const Signup = (props) => {
               textColor="white"
               btnLable="Sign Up"
             />
+            <View style={styles.OR}>
+              <Text style={styles.network}>OR</Text>
+              <View style={styles.iconContainer}>
+                <TouchableOpacity
+                  onPress={() => {
+                    /* Handle google icon press */
+                  }}
+                >
+                  <Icon
+                    style={{
+                      padding: 8,
+                      color: colors.fireEngineRed,
+                      fontSize: 18,
+                    }}
+                    type={Icons.FontAwesome}
+                    name="google"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    /* Handle facebook icon press */
+                  }}
+                >
+                  <Icon
+                    style={{
+                      padding: 8,
+                      color: colors.cornflowerBlue,
+                      fontSize: 18,
+                    }}
+                    type={Icons.FontAwesome}
+                    name="facebook"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    /* Handle linkedin icon press */
+                  }}
+                >
+                  <Icon
+                    style={{ padding: 8, color: colors.sapphire, fontSize: 18 }}
+                    type={Icons.FontAwesome}
+                    name="linkedin"
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
           <View style={styles.loginContainer}>
             <Text style={styles.loginText}>Already have an account?</Text>
@@ -153,6 +200,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
     marginLeft: 5,
+  },
+  OR: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  network: {
+    color: "#8EA3B8",
+    fontSize: 14,
+    marginTop: 20,
+  },
+  iconContainer: {
+    flexDirection: "row",
+    paddingTop: 8,
   },
 });
 

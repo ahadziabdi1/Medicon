@@ -7,6 +7,9 @@ const colors = {
   pineGreen: "#216E61",
   airForceBlue: "#6885A1",
   white: "#FFFFFF",
+  fireEngineRed: "#D61F1F",
+  sapphire: "#2C50AB",
+  cornflowerBlue: "#6D8CD9",
 };
 
 export default colors;
