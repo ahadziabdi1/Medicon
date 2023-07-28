@@ -13,6 +13,7 @@ import colors from "../Constants";
 import Background from "../Background";
 import { SelectList } from "react-native-dropdown-select-list";
 import { MultipleSelectList } from "react-native-dropdown-select-list";
+import ReactNativeCalendarEvents from "react-native-calendar-events";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -183,12 +184,24 @@ const Account = (props) => {
               />
             </View>
             <View style={styles.rowContainer}>
-              <Text style={styles.label}>Sign out</Text>
+              <Text style={styles.label}>Scheduling calendar</Text>
+              <TouchableOpacity
+                style={styles.iconContainer}
+                onPress={() => props.navigation.navigate("Calendar")}
+              >
+                <Icon
+                  style={styles.iconStyle}
+                  type={Icons.FontAwesome}
+                  name="calendar"
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.signoutContainer}>
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("Home")}
               >
                 <Icon
-                  style={styles.iconStyle}
+                  style={styles.signouticon}
                   type={Icons.FontAwesome}
                   name="sign-out"
                 />
@@ -279,6 +292,24 @@ const styles = StyleSheet.create({
   iconStyle: {
     color: colors.airForceBlue,
     fontSize: 20,
+  },
+  signoutContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    position: "relative",
+    marginBottom: 30,
+    width: windowWidth * 1.2,
+    marginRight: windowWidth * 0.41,
+  },
+  signouticon: {
+    position: "absolute",
+    top: 8,
+    right: 8,
+    fontSize: 18,
+    paddingVertical: windowWidth * 0.02,
+    paddingHorizontal: windowWidth * 0.02,
+    color: colors.gunmetal,
   },
 });
 

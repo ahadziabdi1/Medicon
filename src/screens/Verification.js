@@ -22,20 +22,31 @@ const Verification = (props) => {
   const [errors, setErrors] = React.useState({});
   const validate = () => {
     Keyboard.dismiss();
-    let valid = true;
     setErrors({});
-    if (!fields.code) {
-      valid = false;
+
+    const expectedCode = "1111"; //this code should be associated with an email
+
+    if (internalVal !== expectedCode) {
+      setInternalVal(""); // Clear the input when the code is invalid
+      setErrors({ code: "Invalid code, please try again." });
+      alert("Please enter the correct verification code");
+
+      // Return focus to the TextInput after invalid code
+      if (textInputRef.current) {
+        textInputRef.current.focus();
+      }
+
+      return;
     }
-    if (valid) {
-      console.log("Validation passed. Navigating to NewPassword screen.");
-      props.navigation.navigate("NewPassword");
-    } else {
-      console.log("Validation failed. Please enter a verification code.");
-    }
+
+    props.navigation.navigate("NewPassword");
   };
 
-  let textInput = useRef(null);
+  const handleChangeText = (val) => {
+    setFields({ ...fields, code: val });
+  };
+
+  let textInputRef = useRef(null);
   const lengthInput = 4;
   const [internalVal, setInternalVal] = useState("");
   const onChangeText = (val) => {
@@ -43,27 +54,27 @@ const Verification = (props) => {
   };
 
   useEffect(() => {
-    textInput.focus();
+    textInputRef.current.focus();
   }, []);
 
   const renderCellText = (index) => {
-    if (index === internalVal.length) {
+    if (index < internalVal.length) {
       return (
-        <TextInput
-          ref={(input) => (textInput = input)}
-          onChangeText={onChangeText}
-          value={internalVal}
-          maxLength={lengthInput}
-          keyboardType="numeric"
-          style={[styles.cellText, styles.cellTextFocused]}
-          caretColor="black" 
-        />
+        <Text style={styles.cellText}>
+          {internalVal && internalVal.length > 0 ? internalVal[index] : ""}
+        </Text>
       );
     }
     return (
-      <Text style={styles.cellText}>
-        {internalVal && internalVal.length > 0 ? internalVal[index] : ""}
-      </Text>
+      <TextInput
+        ref={textInputRef}
+        onChangeText={onChangeText}
+        value={internalVal}
+        maxLength={lengthInput}
+        keyboardType="numeric"
+        style={[styles.cellText, styles.cellTextFocused]}
+        caretColor="black"
+      />
     );
   };
 
@@ -85,8 +96,8 @@ const Verification = (props) => {
                       {
                         borderBottomColor:
                           index === internalVal.length
-                            ? colors.airForceBlue
-                            : colors.red,
+                            ? colors.turquoise
+                            : colors.gunmetal,
                       },
                     ]}
                   >
@@ -95,12 +106,8 @@ const Verification = (props) => {
                 ))}
             </View>
             <View style={styles.loginContainer}>
-              <Text style={styles.loginText}>
-                If you didn't receive a code,{" "}
-              </Text>
-              <TouchableOpacity
-                onPress={() => props.navigation.navigate("Signup")}
-              >
+              <Text style={styles.loginText}>If you didn't receive a code,{" "}</Text>
+              <TouchableOpacity onPress={() => props.navigation.navigate("Signup")}>
                 <Text style={styles.loginLink}>Resend</Text>
               </TouchableOpacity>
             </View>
@@ -113,9 +120,7 @@ const Verification = (props) => {
           </View>
           <View style={styles.loginContainer}>
             <Text style={styles.loginText}>Don't have an account?</Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate("Signup")}
-            >
+            <TouchableOpacity onPress={() => props.navigation.navigate("Signup")}>
               <Text style={styles.loginLink}>Sign Up</Text>
             </TouchableOpacity>
           </View>
@@ -150,11 +155,11 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
-
   loginContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
+    marginBottom: 10,
   },
   loginText: {
     fontSize: 14,
@@ -166,7 +171,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 5,
   },
-
   containerInput: {
     flexDirection: "row",
     alignItems: "center",
@@ -184,11 +188,11 @@ const styles = StyleSheet.create({
   cellText: {
     textAlign: "center",
     fontSize: 18,
-    color: colors.red,
+    color: colors.gunmetal,
   },
   cellTextFocused: {
     position: "absolute",
-    opacity: 0, // Set opacity to 0 to hide the entered text above the line
+    opacity: 0,
   },
 });
 
