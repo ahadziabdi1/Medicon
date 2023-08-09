@@ -187,7 +187,7 @@ const Account = (props) => {
               <Text style={styles.label}>Scheduling calendar</Text>
               <TouchableOpacity
                 style={styles.iconContainer}
-                onPress={() => props.navigation.navigate("Calendar")}
+                onPress={() => props.navigation.navigate("Calendar")} //navigate to google calendar
               >
                 <Icon
                   style={styles.iconStyle}
