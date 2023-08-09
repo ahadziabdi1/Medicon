@@ -36,23 +36,25 @@ const Login = (props) => {
       valid = false;
     }
 
-    if (valid) {
-      alert(
-        "Welcome back! \n We have sent you an email confirmation. \n Please confirm your email."
-      );
-      props.navigation.navigate("NavigationTab");
-    }
-    /*setTimeout(async () => {
-      let userData = await AsyncStorage.getItem("user");
-      if (userData) {
+      
+
+      if (valid) {
+          alert(
+              "Welcome back! \n We have sent you an email confirmation. \n Please confirm your email."
+          );
+          props.navigation.navigate("NavigationTab");
+      }
+      /*setTimeout(async () => {
+        let userData = await AsyncStorage.getItem("user");
+        if (userData) {
         userData = JSON.parse(userData);
         if (
-          fields.email == userData.email &&
-          fields.password == userData.password
+        fields.email == userData.email &&
+        fields.password == userData.password
         ) {
         }
-      }
-    }, 3000); */
+        }
+        }, 3000); */
   };
   const handleOnChange = (text, field) => {
     setFields((prevState) => ({ ...prevState, [field]: text }));
@@ -60,7 +62,35 @@ const Login = (props) => {
   const handleError = (errorMessage, field) => {
     setErrors((prevState) => ({ ...prevState, [field]: errorMessage }));
   };
-  return (
+
+    const handleLogin = async () => {
+        console.log("Button pressed.")
+        console.log(JSON.stringify({username: fields.username, password: fields.password}))
+        try {
+            const response = await fetch('http://146.255.156.211:8000/accounts/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: fields.username,
+                    password: fields.password,
+                }),
+            });
+
+            console.log("Request sent.")
+
+            const data = await response.json();
+
+            console.log("Response received.")
+
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
+
+    };
+    
+    return (
     <Background>
       <ScrollView>
         <View style={styles.container}>
@@ -92,10 +122,10 @@ const Login = (props) => {
               </TouchableOpacity>
             </View>
             <Btn
-              onPress={validate}
-              bgColor="#8EA3B8"
-              textColor="white"
-              btnLable="Sign In"
+                onPress={handleLogin}
+                bgColor="#8EA3B8"
+                textColor="white"
+                btnLable="Sign In"
             />
             <View style={styles.OR}>
               <Text style={styles.network}>OR</Text>
