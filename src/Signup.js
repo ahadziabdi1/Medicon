@@ -61,8 +61,31 @@ const Signup = (props) => {
   const handleError = (errorMessage, field) => {
     setErrors((prevState) => ({ ...prevState, [field]: errorMessage }));
   };
-  return (
-    <Background>
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch('http://146.255.156.211:8000/accounts/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: fields.username,
+                    password1: fields.password,
+                    password2: fields.confirmpassword
+                }),
+            });
+
+            const data = await response.json();
+
+        } catch (error) {
+            console.error('Error signing in:', error);
+        }
+
+    };
+    
+    return (
+        <Background>
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.heading}>Sign Up</Text>
