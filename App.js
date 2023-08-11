@@ -13,6 +13,8 @@ import ConferenceProgram from "./src/screens/ConferenceProgram";
 import Verification from "./src/screens/Verification";
 import NewPassword from "./src/screens/NewPassword";
 import Calendar from "./src/screens/Calendar";
+import HealthcareTechnologyAndInnovation from "./src/screens/HealthcareTechnologyAndInnovation";
+import AgricultureAndBio from "./src/screens/AgricultureAndBio";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +34,8 @@ function App() {
         <Stack.Screen name="Verification" component={Verification}/>
         <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="HealthcareTechnologyAndInnovation" component={HealthcareTechnologyAndInnovation} />
+        <Stack.Screen name="AgricultureAndBio" component={AgricultureAndBio} />
       </Stack.Navigator>
     </NavigationContainer>
   );
