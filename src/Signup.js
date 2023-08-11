@@ -6,6 +6,7 @@ import {
   Dimensions,
   Keyboard,
 } from "react-native";
+import { GoogleSignin, statusCodes } from 'react-native-google-signin';
 import React from "react";
 import Background from "./Background";
 import Field from "./Field";
@@ -83,6 +84,31 @@ const Signup = (props) => {
         }
 
     };
+
+    GoogleSignin.configure({
+        webClientId: 'WEB_CLIENT_ID',
+        offlineAccess: true, // if you want to access tokens even when the user is offline
+    });
+
+    const signInWithGoogle = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            console.log('Google Sign-In Success', userInfo);
+            // Now you can use userInfo.idToken to send to your Django API
+        } catch (error) {
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                console.log('Google Sign-In Cancelled');
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                console.log('Google Sign-In In Progress');
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                console.log('Play Services Not Available');
+            } else {
+                console.log('Google Sign-In Error', error);
+            }
+        }
+    };
+
     
     return (
         <Background>
