@@ -15,7 +15,7 @@ import Icon, { Icons } from "../bottomtab/Icon";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const AgricultureAndBio = (props) => {
+const S4 = (props) => {
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [selectedEventIndex, setSelectedEventIndex] = useState(-1);
   const navigation = useNavigation();
@@ -37,45 +37,28 @@ const AgricultureAndBio = (props) => {
   const eventTimelines = [
     [
       {
-        time: "10:45 - 12:30",
         eventName:
-          "Digitizing Agriculture and Rural Development in Bosnia and Herzegovina: Leveraging the Power of Science (HALL BASEL)",
-        details:
-          "Keynote addressing:\n• Prof. dr. Vladimir Crnojević, Biosens Institute, Republic of Serbia\n• Prof. dr. Aleksandra Nikolić, University of Sarajevo, Bosnia and Herzegovina\n\nPANEL Discussion on Science, Agriculture, and Rural Development in Bosnia and Herzegovina\n• Mr. Oskar Marko, Biosens Institute Republic of Serbia\n• Ms. Elma Imamović, Verlab Institute, Bosnia and Herzegovina\n• Mr. Kenan Kanlić, Mlin Ustikolina (Eu4Agri Success Story)\n• Prof. dr. Aleksandra Martinović, Director of FoodHub, Faculty of Food Technology, Food Safety and Ecology at University of Donja Gorica",
+          "S4.1. Lisa Anita De Santi, Filippo Bargagna, Maria Filomena Santarelli, Giuseppe Vergaro, Dario Genovesi, Michele Emdin, Assuero Giorgetti, Vincenzo Positano, Explainable CNN-based Cardiac Amyloidosis Classification from PET Images through Manifold Learning",
       },
-      { time: "", eventName: "Lunch" },
       {
-        time: "13:30 - 14:30",
         eventName:
-          "Bio-Innovations in the Food System - towards next generation of multidisciplinary initiatives",
-        details:
-          "• Prof. dr. Aleksandra Martinović, Director of FoodHub, Faculty of Food Technology, Food Safety and Ecology at University of Donja Gorica\n• Prof. dr. Milica Vukotić, Faculty for culture and tourism at University of Donja Gorica\n\nAleksandra Martinovic, Andrea Milacic, Nadja Raicevic, Amil Orahovac, Beatriz Daza, Marija Vugdelic, Adriana Cabal, Werner Ruppitsch, Antimicrobial resistance in the food chain - are we at the point where there is no time to wait?\n\nIvana Vojinovic, Understanding main drivers of global decarbonization",
+          "S4.2. Abdullah Bjelak, , Sara Deumić, Jasmin Kevrić, Monia Avdić, Evaluation of bacterial biofilm category change due to the use of different signalling molecules using random forest classifier",
       },
       {
-        time: "14:30 - 15:30",
         eventName:
-          "IFMBE SPECIAL SESSION WiMBE Coffee Breaks - Empowering Women in Biomedical Engineering Entrepreneurship",
-        details:
-          "• Prof. dr. Virginia Ballarin, AC Member IFMBE\n• Prof. dr. Lenka Lhotska\n• Prof. dr. Eleni Kalkoudi, President Elect, European Alliance for Medical and Biological Engineering and Science - EAMBES\n• Prof. dr. Fabiola Martinez, IFMBE Clinical Engineering Division Chair\n• Mrs. Manuela Apendido, WEWoman Engineers Italy",
+          "S4.3. Francesco Di Nardo, Christian Morbidoni, Filippo Ventura, Alessandro Cucchiarelli, Sandro Fioretti, Evaluating bilateral surface EMG features for automatic identification of gait phase transitions in ground walking conditions",
       },
       {
-        time: "",
-        eventName: "Coffee Break",
-      },
-      {
-        time: "15:45 - 17:00",
         eventName:
-          " Advancements in Sports Medicine for Elite Athletes: Engineering and Innovation Perspectives",
-        details:
-          "• Prof. dr. Leandro Pecchia, University Campus Bio-Medico Roma\n• Azra Ademović, Researcher, Verlab Institute: Application of Artificial Intelligence in sports performance prediction",
+          "S4.4. Riccardo Asnaghi, Nicolo Pini, Nimrod Goldshtrom, Manuela Ferrario, A vital signs-driven approach for clustering the responses to diuretics treatment in premature newborns",
       },
       {
-        time: "",
-        eventName: "Break",
+        eventName:
+          "S4.5. Carolina Ruiz Laguado, Martha Lucia Zequera Diaz, Francisco Carlos Calderón Bocanegra, Identification of atypical cardiac patterns before and after exercising using artificial intelligence and Eulerian video magnification",
       },
       {
-        time: "17:15 - 19:00",
-        eventName: "Industry Panel - IFMBE & BHFF",
+        eventName:
+          "S4.6. Zhuldyz-Zhan Sagimbayev, Alisher Iglymov, Almagul Zhussupova, Meruyert Saifullakyzy, Doszhan Zhussupov, Dias Tashev, Gulden Zhanmukanbetova, Raushan Myrzashova, Deep Learning Enabled Acute Ischemic Stroke Lesion Segmentation for Smart Healthcare Systems",
       },
     ],
   ];
@@ -86,7 +69,8 @@ const AgricultureAndBio = (props) => {
     <Background>
       <View style={styles.container}>
         <Text style={styles.heading}>
-          TRACK: Agriculture & Bio - Innovations in the Food System
+          S4. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall
+          4)
         </Text>
         <View style={styles.timelineContainer}>
           <ScrollView style={{ flex: 1 }}>
@@ -144,9 +128,9 @@ const styles = StyleSheet.create({
     color: colors.frenchGray,
     fontSize: 42,
     textAlign: "center",
-    marginTop: windowWidth * 0.5,
-    marginLeft: windowWidth * 0.22,
-    marginRight: windowWidth * 0.22,
+    marginTop: windowWidth * 0.4,
+    marginLeft: windowWidth * 0.1,
+    marginRight: windowWidth * 0.1,
     marginBottom: windowWidth * 0.05,
   },
   dayText: {
@@ -214,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AgricultureAndBio;
+export default S4;

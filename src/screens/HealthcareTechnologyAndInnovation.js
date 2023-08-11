@@ -140,7 +140,7 @@ const HealthcareTechnologyAndInnovation = (props) => {
                 <Icon
                   style={styles.signouticon}
                   type={Icons.FontAwesome}
-                  name="sign-out"
+                  name="arrow-right"
                 />
               </TouchableOpacity>
         </View>

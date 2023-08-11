@@ -15,6 +15,10 @@ import NewPassword from "./src/screens/NewPassword";
 import Calendar from "./src/screens/Calendar";
 import HealthcareTechnologyAndInnovation from "./src/screens/HealthcareTechnologyAndInnovation";
 import AgricultureAndBio from "./src/screens/AgricultureAndBio";
+import S1 from "./src/screens/S1";
+import S2 from "./src/screens/S2";
+import S3 from "./src/screens/S3";
+import S4 from "./src/screens/S4";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,14 +32,21 @@ function App() {
         <Stack.Screen name="Initial" component={Initial} />
         <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
         <Stack.Screen name="NavigationTab" component={NavigationTab} />
-        <Stack.Screen name="Add" component={Add}/>
-        <Stack.Screen name="Account" component={Account}/>
-        <Stack.Screen name="ConferenceProgram" component={ConferenceProgram}/>
-        <Stack.Screen name="Verification" component={Verification}/>
+        <Stack.Screen name="Add" component={Add} />
+        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="ConferenceProgram" component={ConferenceProgram} />
+        <Stack.Screen name="Verification" component={Verification} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="Calendar" component={Calendar} />
-        <Stack.Screen name="HealthcareTechnologyAndInnovation" component={HealthcareTechnologyAndInnovation} />
+        <Stack.Screen
+          name="HealthcareTechnologyAndInnovation"
+          component={HealthcareTechnologyAndInnovation}
+        />
         <Stack.Screen name="AgricultureAndBio" component={AgricultureAndBio} />
+        <Stack.Screen name="S1" component={S1} />
+        <Stack.Screen name="S2" component={S2} />
+        <Stack.Screen name="S3" component={S3} />
+        <Stack.Screen name="S4" component={S4} />
       </Stack.Navigator>
     </NavigationContainer>
   );

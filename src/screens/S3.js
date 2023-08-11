@@ -15,7 +15,7 @@ import Icon, { Icons } from "../bottomtab/Icon";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const AgricultureAndBio = (props) => {
+const S3 = (props) => {
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [selectedEventIndex, setSelectedEventIndex] = useState(-1);
   const navigation = useNavigation();
@@ -37,45 +37,28 @@ const AgricultureAndBio = (props) => {
   const eventTimelines = [
     [
       {
-        time: "10:45 - 12:30",
         eventName:
-          "Digitizing Agriculture and Rural Development in Bosnia and Herzegovina: Leveraging the Power of Science (HALL BASEL)",
-        details:
-          "Keynote addressing:\n• Prof. dr. Vladimir Crnojević, Biosens Institute, Republic of Serbia\n• Prof. dr. Aleksandra Nikolić, University of Sarajevo, Bosnia and Herzegovina\n\nPANEL Discussion on Science, Agriculture, and Rural Development in Bosnia and Herzegovina\n• Mr. Oskar Marko, Biosens Institute Republic of Serbia\n• Ms. Elma Imamović, Verlab Institute, Bosnia and Herzegovina\n• Mr. Kenan Kanlić, Mlin Ustikolina (Eu4Agri Success Story)\n• Prof. dr. Aleksandra Martinović, Director of FoodHub, Faculty of Food Technology, Food Safety and Ecology at University of Donja Gorica",
+          "S3.1. Elma Hasković, Azra Dolićanin, Edhem Hasković, Safija Herenda, Orhan Lepara, The effect of the angiotensin-converting enzyme inhibitor perindopril on the lipid status of Rattus norvegicus (Berkenhout 1769)",
       },
-      { time: "", eventName: "Lunch" },
       {
-        time: "13:30 - 14:30",
         eventName:
-          "Bio-Innovations in the Food System - towards next generation of multidisciplinary initiatives",
-        details:
-          "• Prof. dr. Aleksandra Martinović, Director of FoodHub, Faculty of Food Technology, Food Safety and Ecology at University of Donja Gorica\n• Prof. dr. Milica Vukotić, Faculty for culture and tourism at University of Donja Gorica\n\nAleksandra Martinovic, Andrea Milacic, Nadja Raicevic, Amil Orahovac, Beatriz Daza, Marija Vugdelic, Adriana Cabal, Werner Ruppitsch, Antimicrobial resistance in the food chain - are we at the point where there is no time to wait?\n\nIvana Vojinovic, Understanding main drivers of global decarbonization",
+          "S3.2. Amila Ahmetašević-Demirović, Dina Lagumdžija, Belma Pehlivanović Kelle, Application of isotretinoin in the treatment of acne vulgaris: a questionnaire-based survey",
       },
       {
-        time: "14:30 - 15:30",
         eventName:
-          "IFMBE SPECIAL SESSION WiMBE Coffee Breaks - Empowering Women in Biomedical Engineering Entrepreneurship",
-        details:
-          "• Prof. dr. Virginia Ballarin, AC Member IFMBE\n• Prof. dr. Lenka Lhotska\n• Prof. dr. Eleni Kalkoudi, President Elect, European Alliance for Medical and Biological Engineering and Science - EAMBES\n• Prof. dr. Fabiola Martinez, IFMBE Clinical Engineering Division Chair\n• Mrs. Manuela Apendido, WEWoman Engineers Italy",
+          "S3.3. Belma Pehlivanović Kelle, Lejla Kurtalić, Aida Šapčanin, Fahir Bečić, Role and application of curcumin in conventional cancer therapy",
       },
       {
-        time: "",
-        eventName: "Coffee Break",
-      },
-      {
-        time: "15:45 - 17:00",
         eventName:
-          " Advancements in Sports Medicine for Elite Athletes: Engineering and Innovation Perspectives",
-        details:
-          "• Prof. dr. Leandro Pecchia, University Campus Bio-Medico Roma\n• Azra Ademović, Researcher, Verlab Institute: Application of Artificial Intelligence in sports performance prediction",
+          "S3.4. Lamija Hindija, Ognjenka Rahić, Edina Vranić, Jasmina Hadžiabdić, Amina Tucak-Smajić, Merima Šahinović, Inclusion complexation with randomly methylated β- cyclodextrin – an opportunity to achieve greater solubility of dimenhydrinate",
       },
       {
-        time: "",
-        eventName: "Break",
+        eventName:
+          "S3.5. Emina Mrđanović, Lejla Osmanbegović, Merima Smajhodžić-Deljo, Adna Softić, Naida Babić- Jordamović, Haris Vranić, Cost-Effectiveness of disinfectant and antimicrobial products usage in public transport",
       },
       {
-        time: "17:15 - 19:00",
-        eventName: "Industry Panel - IFMBE & BHFF",
+        eventName:
+          "S3.6. Hena Brkić, Emina Sarajlić, Alisa Elezović, Curl cream development – a pilot study",
       },
     ],
   ];
@@ -86,7 +69,7 @@ const AgricultureAndBio = (props) => {
     <Background>
       <View style={styles.container}>
         <Text style={styles.heading}>
-          TRACK: Agriculture & Bio - Innovations in the Food System
+          S3. PHARMACEUTICAL ENGINEERING (Hall 3)
         </Text>
         <View style={styles.timelineContainer}>
           <ScrollView style={{ flex: 1 }}>
@@ -145,8 +128,8 @@ const styles = StyleSheet.create({
     fontSize: 42,
     textAlign: "center",
     marginTop: windowWidth * 0.5,
-    marginLeft: windowWidth * 0.22,
-    marginRight: windowWidth * 0.22,
+    marginLeft: windowWidth * 0.01,
+    marginRight: windowWidth * 0.01,
     marginBottom: windowWidth * 0.05,
   },
   dayText: {
@@ -214,4 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AgricultureAndBio;
+export default S3;

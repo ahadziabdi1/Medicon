@@ -83,6 +83,25 @@ const ConferenceProgram = () => {
         time: "09:00 - 10:30",
         eventName: "S1. BIOMEDICAL SIGNAL PROCESSING (Hall 1)",
       },
+      {
+        time: "09:00 - 10:30",
+        eventName: "S2. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)",
+      },
+      {
+        time: "09:00 - 10:30",
+        eventName: "S3. PHARMACEUTICAL ENGINEERING (Hall 3)",
+      },
+      {
+        time: "09:00 - 10:30",
+        eventName: "S4. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)",
+      },
+      {
+        time: "", eventName: "Coffee Break"
+      },
+      {
+        time: "10:45 - 12:30",
+        eventName: "S5. BIOMEDICAL SIGNAL PROCESSING (Hall 1)",
+      },
     ],
     [
       // ... events for Thursday
@@ -126,6 +145,31 @@ const ConferenceProgram = () => {
                     "TRACK: Agriculture & Bio - Innovations in the Food System"
                   ) {
                     navigation.navigate("AgricultureAndBio");
+                  }
+                  if (
+                    event.eventName === "S1. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                  ) {
+                    navigation.navigate("S1");
+                  }
+                  if (
+                    event.eventName === "S2. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)"
+                  ) {
+                    navigation.navigate("S2");
+                  }
+                  if (
+                    event.eventName === "S3. PHARMACEUTICAL ENGINEERING (Hall 3)"
+                  ) {
+                    navigation.navigate("S3");
+                  }
+                  if (
+                    event.eventName === "S4. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
+                  ) {
+                    navigation.navigate("S4");
+                  }
+                  if (
+                    event.eventName === "S5. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                  ) {
+                    navigation.navigate("S5");
                   }
                 }}
               >
