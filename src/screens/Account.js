@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: 8,
-    fontSize: 18,
+    fontSize: 20,
     paddingVertical: windowWidth * 0.02,
     paddingHorizontal: windowWidth * 0.02,
     color: colors.gunmetal,
