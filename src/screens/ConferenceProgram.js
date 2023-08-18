@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,42 +6,58 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused, } from "@react-navigation/native";
 import Background from "../Background";
 import { ScrollView } from "react-native-gesture-handler";
 import colors from "../Constants";
+import axios from "axios";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const daysOfWeek = ["Wednesday", "Thursday", "Friday", "Saturday"];
+const daysOfWeek = ["Thursday", "Friday", "Saturday"];
 
 const ConferenceProgram = () => {
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [selectedEventIndex, setSelectedEventIndex] = useState(-1);
+  const [eventData, setEventData] = useState([]);
   const navigation = useNavigation();
 
   const handlePreviousDay = () => {
     setCurrentDayIndex((prevIndex) => (prevIndex === 0 ? 3 : prevIndex - 1));
     setSelectedEventIndex(-1);
+    //fetchEventData();
   };
 
   const handleNextDay = () => {
     setCurrentDayIndex((prevIndex) => (prevIndex === 3 ? 0 : prevIndex + 1));
     setSelectedEventIndex(-1);
+    //fetchEventData();
   };
 
-  const handleEventClick = (eventIndex) => {
+  const handleEventClick = /*async*/ (eventIndex) => {
     setSelectedEventIndex(eventIndex);
+    /*const event = eventData[eventIndex];
+    
+    try {
+      const response = await fetch('YOUR_API_ENDPOINT', {
+        method: 'POST', // or 'GET' depending on API
+        headers: {
+          'Content-Type': 'application/json'
+          // Add any other headers you need
+        },
+        body: JSON.stringify({ event: event.eventName })
+      });
+  
+      if (response.ok) {
+      } else {
+      }
+    } catch (error) {
+      console.error('Error sending request:', error);
+    } */
   };
 
   const eventTimelines = [
-    [
-      {
-        time: "19:00 - 23:00",
-        eventName: "Welcome Cocktail (only with invitations)",
-      },
-    ],
     [
       {
         time: "08:00 - 09:00",
@@ -268,225 +284,249 @@ const ConferenceProgram = () => {
     ],
   ];
 
+  /*useEffect(() => {
+    fetch('YOUR_API_ENDPOINT')
+      .then(response => response.json())
+      .then(data => {
+        setEventData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching event data:', error);
+      });
+  }, []); */
+
   const currentEventTimeline = eventTimelines[currentDayIndex];
 
   return (
     <Background>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Conference program</Text>
-        <View style={styles.containerDay}>
-          <TouchableOpacity
-            style={styles.arrowButton}
-            onPress={handlePreviousDay}
-          >
-            <Text style={styles.arrowText}>{"<"}</Text>
-          </TouchableOpacity>
-          <Text style={styles.dayText}>{daysOfWeek[currentDayIndex]}</Text>
-          <TouchableOpacity style={styles.arrowButton} onPress={handleNextDay}>
-            <Text style={styles.arrowText}>{">"}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.timelineContainer}>
-          <ScrollView style={{ flex: 1 }}>
-            {currentEventTimeline.map((event, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.eventItem}
-                onPress={() => {
-                  handleEventClick(index);
-                  if (
-                    event.eventName ===
-                    "TRACK: Healthcare Technology and Innovation"
-                  ) {
-                    navigation.navigate("HealthcareTechnologyAndInnovation");
-                  }
-                  if (
-                    event.eventName ===
-                    "TRACK: Agriculture & Bio - Innovations in the Food System"
-                  ) {
-                    navigation.navigate("AgricultureAndBio");
-                  }
-                  if (
-                    event.eventName ===
-                    "S1. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
-                  ) {
-                    navigation.navigate("S1");
-                  }
-                  if (
-                    event.eventName ===
-                    "S2. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)"
-                  ) {
-                    navigation.navigate("S2");
-                  }
-                  if (
-                    event.eventName ===
-                    "S3. PHARMACEUTICAL ENGINEERING (Hall 3)"
-                  ) {
-                    navigation.navigate("S3");
-                  }
-                  if (
-                    event.eventName ===
-                    "S4. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
-                  ) {
-                    navigation.navigate("S4");
-                  }
-                  if (
-                    event.eventName ===
-                    "S5. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
-                  ) {
-                    navigation.navigate("S5");
-                  }
-                  if (
-                    event.eventName ===
-                    "S6. HEALTH INFORMATICS, E-HEALTH AND TELEMEDICINE (Hall 2)"
-                  ) {
-                    navigation.navigate("S6");
-                  }
-                  if (
-                    event.eventName ===
-                    "S7. PHARMACEUTICAL ENGINEERING (Hall 3)"
-                  ) {
-                    navigation.navigate("S7");
-                  }
-                  if (
-                    event.eventName ===
-                    "S8. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
-                  ) {
-                    navigation.navigate("S8");
-                  }
-                  if (
-                    event.eventName ===
-                    "S9. BIO - INNOVATIONS IN THE FOOD SYSTEM & GREEN CHEMISTRY (Hall 2)"
-                  ) {
-                    navigation.navigate("S9");
-                  }
-                  if (
-                    event.eventName ===
-                    "S10. MOLECULAR, CELLULAR AND TISSUE ENGINEERING (Hall 3)"
-                  ) {
-                    navigation.navigate("S10");
-                  }
-                  if (event.eventName === "S11. BIO-MICRO/NANO TECHNOLOGIES") {
-                    navigation.navigate("S11");
-                  }
-                  if (
-                    event.eventName ===
-                    "S12. Frugal engineering for the design of medical devices resilient to low-resource settings: state of the art, challenges, future (Hall 4)"
-                  ) {
-                    navigation.navigate("S12");
-                  }
-                  if (
-                    event.eventName ===
-                    "S14. BIOMEDICAL SIGNAL PROCESSING – IFMBE YOUNG INVESTIGATOR COMPETITION (Hall 1)"
-                  ) {
-                    navigation.navigate("S14");
-                  }
-                  if (
-                    event.eventName ===
-                    "S15. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 3)"
-                  ) {
-                    navigation.navigate("S15");
-                  }
-                  if (
-                    event.eventName ===
-                    "S16. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
-                  ) {
-                    navigation.navigate("S16");
-                  }
-                  if (
-                    event.eventName ===
-                    "S17. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
-                  ) {
-                    navigation.navigate("S17");
-                  }
-                  if (
-                    event.eventName ===
-                    "S18. CLINICAL ENGINEERING AND HEALTH TECHNOLOGY ASSESSMENT (Hall 2)"
-                  ) {
-                    navigation.navigate("S18");
-                  }
-                  if (
-                    event.eventName ===
-                    "S19. GENETIC ENGINEERING/NEURAL AND REHABILITATION ENGINEERING & VETERINARY ENGINEERING (Hall 3)"
-                  ) {
-                    navigation.navigate("S19");
-                  }
-                  if (
-                    event.eventName ===
-                    "S20. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
-                  ) {
-                    navigation.navigate("S20");
-                  }
-                  if (
-                    event.eventName ===
-                    "S21. METROLOGY IN MEDICAL MEASUREMENTS (Hall 2)"
-                  ) {
-                    navigation.navigate("S21");
-                  }
-                  if (
-                    event.eventName ===
-                    "S22. CLINICAL ENGINEERING AND HEALTH TECHNOLOGY ASSESSMENT (Hall 2)"
-                  ) {
-                    navigation.navigate("S22");
-                  }
-                  if (
-                    event.eventName ===
-                    "S23. BIOSENSORS AND BIOINSTRUMENTATION (Hall 3)"
-                  ) {
-                    navigation.navigate("S23");
-                  }
-                  if (
-                    event.eventName ===
-                    "S24. HEALTH INFORMATICS, E-HEALTH AND TELEMEDICINE (Hall 4)"
-                  ) {
-                    navigation.navigate("S24");
-                  }
-                  if (
-                    event.eventName ===
-                    "S25. BIOMECHANICS, ROBOTICS AND MINIMALLY INVASIVE SURGERY (Hall 1)"
-                  ) {
-                    navigation.navigate("S25");
-                  }
-                  if (
-                    event.eventName ===
-                    "S26. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)"
-                  ) {
-                    navigation.navigate("S26");
-                  }
-                  if (
-                    event.eventName ===
-                    "S27. ARTIFICIAL INTELLIGENCE IN HEALTHCARE & BIOINFORMATICS AND COMPUTATIONAL BIOLOGY (Hall 3)"
-                  ) {
-                    navigation.navigate("S27");
-                  }
-                  if (
-                    event.eventName ===
-                    "S28. BIOINFORMATICS AND COMPUTATIONAL BIOLOGY (Hall 4)"
-                  ) {
-                    navigation.navigate("S28");
-                  }
-                }}
-              >
-                <View style={styles.timelineConnector} />
-                <View style={styles.eventContent}>
-                  <Text style={styles.eventTime}>{event.time}</Text>
-                  <Text
-                    style={[
-                      styles.eventName,
-                      selectedEventIndex === index && styles.selectedEvent,
-                    ]}
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.heading}>Conference program</Text>
+          <View style={styles.containerDay}>
+            <TouchableOpacity
+              style={styles.arrowButton}
+              onPress={handlePreviousDay}
+            >
+              <Text style={styles.arrowText}>{"<"}</Text>
+            </TouchableOpacity>
+            <Text style={styles.dayText}>{daysOfWeek[currentDayIndex]}</Text>
+            <TouchableOpacity
+              style={styles.arrowButton}
+              onPress={handleNextDay}
+            >
+              <Text style={styles.arrowText}>{">"}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.timelineContainer}>
+            <ScrollView style={{ flex: 1 }}>
+              {
+                //eventData.map((event, index) => (
+                currentEventTimeline.map((event, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.eventItem}
+                    onPress={() => {
+                      handleEventClick(index);
+
+                      if (
+                        event.eventName ===
+                        "TRACK: Healthcare Technology and Innovation"
+                      ) {
+                        navigation.navigate(
+                          "HealthcareTechnologyAndInnovation"
+                        );
+                      }
+                      if (
+                        event.eventName ===
+                        "TRACK: Agriculture & Bio - Innovations in the Food System"
+                      ) {
+                        navigation.navigate("AgricultureAndBio");
+                      }
+                      if (
+                        event.eventName ===
+                        "S1. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                      ) {
+                        navigation.navigate("S1");
+                      }
+                      if (
+                        event.eventName ===
+                        "S2. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)"
+                      ) {
+                        navigation.navigate("S2");
+                      }
+                      if (
+                        event.eventName ===
+                        "S3. PHARMACEUTICAL ENGINEERING (Hall 3)"
+                      ) {
+                        navigation.navigate("S3");
+                      }
+                      if (
+                        event.eventName ===
+                        "S4. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
+                      ) {
+                        navigation.navigate("S4");
+                      }
+                      if (
+                        event.eventName ===
+                        "S5. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                      ) {
+                        navigation.navigate("S5");
+                      }
+                      if (
+                        event.eventName ===
+                        "S6. HEALTH INFORMATICS, E-HEALTH AND TELEMEDICINE (Hall 2)"
+                      ) {
+                        navigation.navigate("S6");
+                      }
+                      if (
+                        event.eventName ===
+                        "S7. PHARMACEUTICAL ENGINEERING (Hall 3)"
+                      ) {
+                        navigation.navigate("S7");
+                      }
+                      if (
+                        event.eventName ===
+                        "S8. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                      ) {
+                        navigation.navigate("S8");
+                      }
+                      if (
+                        event.eventName ===
+                        "S9. BIO - INNOVATIONS IN THE FOOD SYSTEM & GREEN CHEMISTRY (Hall 2)"
+                      ) {
+                        navigation.navigate("S9");
+                      }
+                      if (
+                        event.eventName ===
+                        "S10. MOLECULAR, CELLULAR AND TISSUE ENGINEERING (Hall 3)"
+                      ) {
+                        navigation.navigate("S10");
+                      }
+                      if (
+                        event.eventName === "S11. BIO-MICRO/NANO TECHNOLOGIES"
+                      ) {
+                        navigation.navigate("S11");
+                      }
+                      if (
+                        event.eventName ===
+                        "S12. Frugal engineering for the design of medical devices resilient to low-resource settings: state of the art, challenges, future (Hall 4)"
+                      ) {
+                        navigation.navigate("S12");
+                      }
+                      if (
+                        event.eventName ===
+                        "S14. BIOMEDICAL SIGNAL PROCESSING – IFMBE YOUNG INVESTIGATOR COMPETITION (Hall 1)"
+                      ) {
+                        navigation.navigate("S14");
+                      }
+                      if (
+                        event.eventName ===
+                        "S15. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 3)"
+                      ) {
+                        navigation.navigate("S15");
+                      }
+                      if (
+                        event.eventName ===
+                        "S16. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
+                      ) {
+                        navigation.navigate("S16");
+                      }
+                      if (
+                        event.eventName ===
+                        "S17. BIOMEDICAL SIGNAL PROCESSING (Hall 1)"
+                      ) {
+                        navigation.navigate("S17");
+                      }
+                      if (
+                        event.eventName ===
+                        "S18. CLINICAL ENGINEERING AND HEALTH TECHNOLOGY ASSESSMENT (Hall 2)"
+                      ) {
+                        navigation.navigate("S18");
+                      }
+                      if (
+                        event.eventName ===
+                        "S19. GENETIC ENGINEERING/NEURAL AND REHABILITATION ENGINEERING & VETERINARY ENGINEERING (Hall 3)"
+                      ) {
+                        navigation.navigate("S19");
+                      }
+                      if (
+                        event.eventName ===
+                        "S20. ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN HEALTHCARE (Hall 4)"
+                      ) {
+                        navigation.navigate("S20");
+                      }
+                      if (
+                        event.eventName ===
+                        "S21. METROLOGY IN MEDICAL MEASUREMENTS (Hall 2)"
+                      ) {
+                        navigation.navigate("S21");
+                      }
+                      if (
+                        event.eventName ===
+                        "S22. CLINICAL ENGINEERING AND HEALTH TECHNOLOGY ASSESSMENT (Hall 2)"
+                      ) {
+                        navigation.navigate("S22");
+                      }
+                      if (
+                        event.eventName ===
+                        "S23. BIOSENSORS AND BIOINSTRUMENTATION (Hall 3)"
+                      ) {
+                        navigation.navigate("S23");
+                      }
+                      if (
+                        event.eventName ===
+                        "S24. HEALTH INFORMATICS, E-HEALTH AND TELEMEDICINE (Hall 4)"
+                      ) {
+                        navigation.navigate("S24");
+                      }
+                      if (
+                        event.eventName ===
+                        "S25. BIOMECHANICS, ROBOTICS AND MINIMALLY INVASIVE SURGERY (Hall 1)"
+                      ) {
+                        navigation.navigate("S25");
+                      }
+                      if (
+                        event.eventName ===
+                        "S26. MEDICAL PHYSICS, BIOMEDICAL IMAGING AND RADIATION PROTECTION (Hall 2)"
+                      ) {
+                        navigation.navigate("S26");
+                      }
+                      if (
+                        event.eventName ===
+                        "S27. ARTIFICIAL INTELLIGENCE IN HEALTHCARE & BIOINFORMATICS AND COMPUTATIONAL BIOLOGY (Hall 3)"
+                      ) {
+                        navigation.navigate("S27");
+                      }
+                      if (
+                        event.eventName ===
+                        "S28. BIOINFORMATICS AND COMPUTATIONAL BIOLOGY (Hall 4)"
+                      ) {
+                        navigation.navigate("S28");
+                      }
+                    }}
                   >
-                    {event.eventName}
-                  </Text>
-                  {selectedEventIndex === index && (
-                    <Text style={styles.eventDetails}>{event.details}</Text>
-                  )}
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+                    <View style={styles.timelineConnector} />
+                    <View style={styles.eventContent}>
+                      <Text style={styles.eventTime}>{event.time}</Text>
+                      <Text
+                        style={[
+                          styles.eventName,
+                          selectedEventIndex === index && styles.selectedEvent,
+                        ]}
+                      >
+                        {event.eventName}
+                      </Text>
+                      {selectedEventIndex === index && (
+                        <Text style={styles.eventDetails}>{event.details}</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                ))
+              }
+            </ScrollView>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </Background>
   );
 };
@@ -537,7 +577,7 @@ const styles = StyleSheet.create({
     marginRight: windowWidth * 0.05,
     marginLeft: windowWidth * 0.05,
     flex: 1,
-    height: windowHeight * 0.1,
+    height: windowHeight * 0.3,
   },
   eventItem: {
     flexDirection: "row",

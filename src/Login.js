@@ -122,7 +122,7 @@ const Login = (props) => {
               </TouchableOpacity>
             </View>
             <Btn
-                onPress={handleLogin}
+                onPress={validate}
                 bgColor="#8EA3B8"
                 textColor="white"
                 btnLable="Sign In"

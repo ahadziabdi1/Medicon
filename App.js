@@ -42,6 +42,7 @@ import S25 from "./src/screens/S25";
 import S26 from "./src/screens/S26";
 import S27 from "./src/screens/S27";
 import S28 from "./src/screens/S28";
+import AboutApplication from "./src/screens/AboutApplication";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,7 @@ function App() {
         <Stack.Screen name="ConferenceProgram" component={ConferenceProgram} />
         <Stack.Screen name="Verification" component={Verification} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
+        <Stack.Screen name="AboutApplication" component={AboutApplication}/>
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen
           name="HealthcareTechnologyAndInnovation"
